@@ -1,5 +1,6 @@
 class ProjectDecorator < Draper::Decorator
   delegate_all
+  decorates_association :user
 
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
@@ -9,5 +10,9 @@ class ProjectDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+
+  def author_name
+    "#{object.author.firstname} #{object.author.lastname}"
+  end
 
 end

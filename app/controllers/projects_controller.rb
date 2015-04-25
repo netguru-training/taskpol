@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(title: params[:title], desc: params[:desc], user_id: current_user.id)
+    @project = Project.new(title: params[:project][:title], desc: params[:project][:desc], author_id: current_user.id)
 
     if @project.save
       redirect_to project_path(@project), notice: "Project has been created successfully."
@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:id]).decorate
   end
 
   private
