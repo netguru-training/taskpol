@@ -1,2 +1,60 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+.col-sm-8.col-sm-offset-2
+  %h1
+    = @user.name
+  %h3
+    = "Email: " + @user.email
+  %h3
+    = "Registered: " + @user.created_at.strftime("%d/%m/%Y")
+  - if @user.last_sign_in_at
+    %h3
+      = "Last login: " + @user.last_sign_in_at.strftime("%d/%m/%Y")
+
+  %br
+  %h3
+    Created tasks
+  %table.table.table-striped
+    %tr
+      %th #
+      %th Name
+      %th Status
+      %th Created at
+    - @authored_tasks.each do |t|
+      %tr
+        %td
+          %h4
+            = t.id
+        %td
+          %h5
+            = t.name
+        %td
+          %h5
+            = t.status
+        %td
+          %h5
+            = t.created_at.strftime("%d/%m/%Y")
+  %br
+  %h3
+    Owned tasks
+  %table.table.table-striped
+    %tr
+      %th #
+      %th Name
+      %th Status
+      %th Created at
+    - @owned_tasks.each do |t|
+      %tr
+        %td
+          %h4
+            = t.id
+        %td
+          %h5
+            = t.name
+        %td
+          %h5
+            = t.status
+        %td
+          %h5
+            = t.created_at.strftime("%d/%m/%Y")
+  %br
+  .pull-right
+    = link_to 'Back', root_path, class: 'btn btn-default'
