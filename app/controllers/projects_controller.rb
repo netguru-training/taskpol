@@ -21,6 +21,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id]).decorate
+    ids = ProjectUser.where(project_id: @project.id).map {|pu| pu.user_id }
+    @users = User.where.not(id: ids).decorate
   end
 
   def edit
