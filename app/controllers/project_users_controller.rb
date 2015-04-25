@@ -11,7 +11,6 @@ class ProjectUsersController < ApplicationController
   end
 
   def create
-    binding.pry
     p = ProjectUser.new
     p.project_id = params[:project_id]
     p.user_id = params[:user_id]
