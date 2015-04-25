@@ -1,0 +1,5 @@
+%ul.list-group
+  - @activities.each do |activity|
+    .activity
+      = link_to "#{activity.owner.firstname} #{activity.owner.lastname}", activity.owner if activity.owner
+      = render_activity activity

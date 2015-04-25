@@ -1,4 +1,6 @@
 class Task < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
 
   validates :name, presence: true
 
