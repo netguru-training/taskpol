@@ -1,0 +1,8 @@
+.col-md-6
+  .row
+    %p Witaj świecie
+    - if user_signed_in?
+      %p= link_to "Wyloguj się", destroy_user_session_path, method: :delete
+    - else
+      %p= link_to "Rejestracja", new_user_registration_path
+      %p= link_to "Logowanie", new_user_session_path
