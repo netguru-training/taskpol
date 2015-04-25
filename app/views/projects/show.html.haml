@@ -1,16 +1,35 @@
-.col-md-6.col-md-offset-2
-  .row
-    %table.table.table-stripped
-      %thead
+.col-md-6.col-md-offset-3
+  %h1
+    = @project.title
+    %h3
+      = "Description: " + @project.desc
+    %h3
+      = "Created: " + @project.created_at.strftime("%d/%m/%Y")
+    %h3
+      = "Author: " + @project.author_name
+    %br
+    %h4
+      Users in project
+    %table.table.table-striped
+      - @project.users.each do |u|
         %tr
-          %th #Id
-          %th Title
-          %th Description
-          %th Author
-      %tbody
+          %td
+            = u.name
+          %td
+            .pull-right
+              = link_to "Delete user from project", project_project_users_path(@project, user_id: u), method: :delete, class: "btn btn-danger btn-xs"
+    %br
+    %p= link_to "Edit project", edit_project_path(@project), class: "btn btn-warning"
+
+.col-md-2.col-md-offset-1
+  %h4
+    Add users to project
+  %br
+    %table.table.table-condensed
+      - @users.each do |u|
         %tr
-          %td= @project.id
-          %td= @project.title
-          %td= @project.desc
-          %td= @project.author_name
-    %p= link_to "Edit project", edit_project_path(@project)
+          %td
+            = u.name
+          %td
+            = link_to "Add", project_project_users_path(@project, user_id: u), method: :post, class: "btn btn-success btn-xs"
+

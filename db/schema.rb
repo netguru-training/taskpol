@@ -11,11 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150425125326) do
+=======
+ActiveRecord::Schema.define(version: 20150425132321) do
+>>>>>>> c3a87fef0d626fae58c21ac3a0469c9448cd4a77
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+<<<<<<< HEAD
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
     t.string   "trackable_type"
@@ -33,6 +38,15 @@ ActiveRecord::Schema.define(version: 20150425125326) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
 
+=======
+  create_table "comments", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "desc"
+    t.integer  "author_id"
+  end
+
+>>>>>>> c3a87fef0d626fae58c21ac3a0469c9448cd4a77
   create_table "project_users", force: true do |t|
     t.integer  "project_id"
     t.integer  "user_id"
@@ -48,6 +62,22 @@ ActiveRecord::Schema.define(version: 20150425125326) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
+=======
+  create_table "statuses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "task_statuses", force: true do |t|
+    t.integer  "task_id"
+    t.integer  "status_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+>>>>>>> c3a87fef0d626fae58c21ac3a0469c9448cd4a77
   create_table "tasks", force: true do |t|
     t.string   "name"
     t.string   "desc"

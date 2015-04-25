@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(title: params[:project][:title], desc: params[:project][:desc], author_id: current_user.id)
 
     if @project.save
+      ProjectUser.create(project: @project, user: current_user)
       redirect_to project_path(@project), notice: "Project has been created successfully."
     else
       redirect_to root_path, alert: "Project has not been created."
@@ -20,6 +21,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id]).decorate
+    ids = ProjectUser.where(project_id: @project.id).map {|pu| pu.user_id }
+    @users = User.where.not(id: ids).decorate
   end
 
   def edit

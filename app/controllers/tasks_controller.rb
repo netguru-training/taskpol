@@ -15,7 +15,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.authored_tasks.new(task_params)
     if @task.save
-      redirect_to tasks_path, success: "Task created #{@task.name}."
+      redirect_to tasks_path, notice: "Task created #{@task.name}."
     else
       render :new, error: "Something gone wrong. Please try again."
     end
@@ -23,6 +23,16 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+  end
+
+  def update
+    @task = Task.find(params[:id])
+
+    if @task.update(task_params)
+      redirect_to task_path
+    else
+      render 'edit'
+    end
   end
 
 

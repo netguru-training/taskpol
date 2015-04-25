@@ -8,4 +8,5 @@
         %p.list-group-item-text= @task.owner.email
       %p.list-group-item-text= "Created at: #{@task.created_at.strftime("%e.%m.%Y")}"
       %p.list-group-item-text= "Updated at: #{@task.updated_at.strftime("%e.%m.%Y")}"
+      %p.list-group-item-text= "Status of task: xx"
       .btn.btn-default= link_to "Edit Task", edit_task_path(@task)
