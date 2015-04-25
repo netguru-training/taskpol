@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.all
+    @projects = Project.all.decorate
   end
 
   def new
@@ -26,10 +26,19 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    if Project.find(params[:id]).author != current_user
+      flash[:error] = 'You are not allowed to edit this project.'
+      redirect_to project_path(params[:id])
+    end
     @project = Project.find(params[:id])
   end
 
   def update
+    if Project.find(params[:id]).author != current_user
+      flash[:error] = 'You are not allowed to update this project.'
+      redirect_to project_path(params[:id])
+    end
+
     @project = Project.find(params[:id])
 
     if @project.update(project_params)
