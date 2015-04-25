@@ -3,9 +3,9 @@
     .list-group
       %h3.list-group-item-heading= @task.name
       %p.list-group-item-text= @task.desc
-      %p.list-group-item-text= @task.author.email
+      %p.list-group-item-text= "Task author: #{@task.author.email}"
       - if @task.owner
-        %p.list-group-item-text= @task.owner.email
+        %p.list-group-item-text= "Task owner: #{@task.owner.email}"
       %p.list-group-item-text= "Created at: #{@task.created_at.strftime("%e.%m.%Y")}"
       %p.list-group-item-text= "Updated at: #{@task.updated_at.strftime("%e.%m.%Y")}"
       %p.list-group-item-text= "Status of task: xx"
@@ -15,3 +15,4 @@
           %p.list-group-item-text= c.author_id
 
       .btn.btn-default= link_to "Edit Task", edit_task_path(@task)
+      -#.btn.btn-default= link_to "Add Comment", comment_new_path(@comment)
