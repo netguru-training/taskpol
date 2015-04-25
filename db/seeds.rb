@@ -3,8 +3,8 @@ Status.destroy_all
 Task.destroy_all
 
 u1 = User.create(email: "user1@user.pl", password: "useruser1", firstname: "Jan", lastname: "Kowalski")
-u2 = User.create(email: "user2@user.pl", password: "useruser2", firstname: "Jan", lastname: "Kowalski")
-u3 = User.create(email: "user3@user.pl", password: "useruser3", firstname: "Jan", lastname: "Kowalski")
+u2 = User.create(email: "user2@user.pl", password: "useruser2", firstname: "Ala", lastname: "Nowak")
+u3 = User.create(email: "user3@user.pl", password: "useruser3", firstname: "Mateusz", lastname: "Xyz")
 
 s1 = Status.create(name: 'ToDo')
 s2 = Status.create(name: 'In progress')
