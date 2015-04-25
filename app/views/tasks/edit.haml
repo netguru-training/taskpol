@@ -12,9 +12,9 @@
       .form-group= f.text_field :name, class: 'form-control', placeholder: 'Name of task.'
     .form-inputs{ @task.errors.messages[:desc] ? {class: "has-error"} : {} }
       .form-group= f.text_area :desc, class: 'form-control', placeholder: 'Description of your task.'
-    .form-inputs{ @task.errors.messages[:desc] ? {class: "has-error"} : {} }
+    .form-inputs{ @task.errors.messages[:owner_id] ? {class: "has-error"} : {} }
       .form-group= f.text_field :owner_id, class: 'form-control', placeholder: 'Owner of task'
-    .form-inputs{ @task.errors.messages[:desc] ? {class: "has-error"} : {} }
+    .form-inputs{ @task.errors.messages[:status] ? {class: "has-error"} : {} }
       .form-group= f.select :status, class: 'form-control'
 
 
