@@ -23,7 +23,12 @@ gem 'spring', group: :development
 gem 'devise'
 
 gem 'simple_form'
+
 gem 'haml'
+
 gem 'bootstrap-sass'
+
+
 gem 'html2haml'
+
 gem 'pry-rails'
