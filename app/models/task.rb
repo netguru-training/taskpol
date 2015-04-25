@@ -7,4 +7,7 @@ class Task < ActiveRecord::Base
 
   belongs_to :project
 
+  has_many :statuses, through: :task_statuses
+  has_many :task_statuses, dependent: :destroy
+
 end
