@@ -1,6 +1,6 @@
 .col-md-6.col-md-offset-3
   %h3.text-center Update Task
-  = form_for @task do |f|
+  = simple_form_for @task do |f|
     - if @task.errors.any?
       #error_explanation.well.well-sm
         %p.text-center.text-muted= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
@@ -15,7 +15,7 @@
     .form-inputs{ @task.errors.messages[:owner_id] ? {class: "has-error"} : {} }
       .form-group= f.text_field :owner_id, class: 'form-control', placeholder: 'Owner of task'
     .form-inputs{ @task.errors.messages[:status] ? {class: "has-error"} : {} }
-      .form-group= f.select :status, class: 'form-control'
+      .form-group= f.association :status
 
 
     .form-actions
