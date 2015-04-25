@@ -4,6 +4,10 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def show
+    @task = Task.find(params[:id])
+  end
+
   def new
     @task = current_user.authored_tasks.new
   end
@@ -16,6 +20,11 @@ class TasksController < ApplicationController
       render :new, error: "Something gone wrong. Please try again."
     end
   end
+
+  def edit
+    @task = Task.find(params[:id])
+  end
+
 
   private
 
