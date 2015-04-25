@@ -2,14 +2,15 @@
   %h3.text-center Create Task
   = form_for @task do |f|
     - if @task.errors.any?
-      #error_explanation
-        %h4.text-center.text-muted= "#{pluralize(category.errors.count, "error")} prohibited this category from being saved:"
+      #error_explanation.well.well-sm
+        %p.text-center.text-muted= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
         %ul
           - @task.errors.full_messages.each do |msg|
-            %li= msg
+            %li.text-danger= msg
 
-    .form-inputs
+    .form-inputs{ @task.errors.messages[:name] ? {class: "has-error"} : {} }
       .form-group= f.text_field :name, class: 'form-control', placeholder: 'Name of task.'
+    .form-inputs{ @task.errors.messages[:desc] ? {class: "has-error"} : {} }
       .form-group= f.text_area :desc, class: 'form-control', placeholder: 'Description of your task.'
 
     .form-actions
