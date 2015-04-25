@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  get 'users/index'
-
-  get 'users/show'
 
   devise_for :users
 
-  root to: "application#index" 
+  resources :users, only: [:index, :show]
+
+  root to: "application#index"
 end
