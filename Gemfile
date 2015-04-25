@@ -26,7 +26,7 @@ gem 'simple_form'
 
 gem 'haml'
 
-gem 'draper', '~> 1.3'
+gem 'draper', '~> 1.4'
 
 gem 'bootstrap-sass', '~> 3.3.4'
 
