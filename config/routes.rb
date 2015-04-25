@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     # end
   end
   resources :tasks
-  resources :activities
 
   root to: "application#index"
 end
