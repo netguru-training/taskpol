@@ -18,6 +18,7 @@
       %th Name
       %th Status
       %th Created at
+      %th Options
     - @authored_tasks.each do |t|
       %tr
         %td
@@ -25,13 +26,16 @@
             = t.id
         %td
           %h5
-            = t.name
+            = link_to t.name, task_path(t)
         %td
           %h5
             = t.status
         %td
           %h5
             = t.created_at.strftime("%d/%m/%Y")
+        %td
+          = link_to "Delete", task_path(t), method: :delete, data: { confirm: "Are you sure?" }
+          = link_to "Edit", edit_task_path(t)
   %br
   %h3
     Owned tasks
