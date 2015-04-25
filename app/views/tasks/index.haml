@@ -1,0 +1,10 @@
+.row
+  .col-md-3
+    .list-group
+      - @tasks.each do |t|
+        = link_to task_path(t.id), class:"list-group-item" do
+          %h4.list-group-item-heading= t.name
+          %p.list-group-item-text= t.desc
+          %p.list-group-item-text= t.author.email
+          - if t.owner
+            %p.list-group-item-text= t.owner.email
