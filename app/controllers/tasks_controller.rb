@@ -35,6 +35,16 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @user = @task.author
+    if @task.destroy
+      redirect_to user_path(@user), success: "Task has been deleted."
+    else
+      redirect_to user_path(@user), alert: "Task has not been deleted."
+    end
+  end
+
 
   private
 
