@@ -12,15 +12,29 @@
       Users in project
     %table.table.table-striped
       %tr
-        %th User
-        %th
+        %td
+          = @project.author_name
+        %td
+
       - @project.users.each do |u|
         %tr
           %td
             = u.name
           %td
             .pull-right
-              = link_to "Delete user from project" , root_path, class: "btn btn-danger btn-xs"
+              = link_to "Delete user from project", project_project_users_path(@project, user_id: u), method: :delete, class: "btn btn-danger btn-xs"
     %br
     %p= link_to "Edit project", edit_project_path(@project), class: "btn btn-warning"
+
+.col-md-2.col-md-offset-1
+  %h4
+    Add users to project
+  %br
+    %table.table.table-condensed
+      - @users.each do |u|
+        %tr
+          %td
+            = u.name
+          %td
+            = link_to "Add", project_project_users_path(@project, user_id: u), method: :post, class: "btn btn-success btn-xs"
 
