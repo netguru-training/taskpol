@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
     @project = Project.new(title: params[:project][:title], desc: params[:project][:desc], author_id: current_user.id)
 
     if @project.save
+      ProjectUser.create(project: @project, user: current_user)
       redirect_to project_path(@project), notice: "Project has been created successfully."
     else
       redirect_to root_path, alert: "Project has not been created."
