@@ -22,7 +22,6 @@ gem 'spring', group: :development
 
 gem 'devise'
 
-gem 'devise'
 gem 'simple_form'
 gem 'haml'
 gem 'bootstrap-sass'
