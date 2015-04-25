@@ -9,5 +9,6 @@ class Task < ActiveRecord::Base
 
   has_many :statuses, through: :task_statuses
   has_many :task_statuses, dependent: :destroy
+  has_many :comments
 
 end
