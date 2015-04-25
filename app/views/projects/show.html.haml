@@ -11,6 +11,11 @@
     %h4
       Users in project
     %table.table.table-striped
+      %tr
+        %td
+          = @project.author_name
+        %td
+
       - @project.users.each do |u|
         %tr
           %td
