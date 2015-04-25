@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :fetch_projects, only: [:show, :edit, :update]
 
   def index
-    @projects = Project.all
+    @projects = Project.all.decorate
   end
 
   def new
@@ -30,8 +30,9 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.update(project_params)
-      redirect_to project_path(@project), success: "Project has been updated."
+    if Project.find(params[:id]).author != current_user
+      flash[:error] = 'You are not allowed to edit this project.'
+      redirect_to project_path(params[:id])
     else
       render :edit
     end

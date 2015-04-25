@@ -1,12 +1,13 @@
 class TasksController < ApplicationController
 
-  before_action :fetch_task, only: [:show, :edit, :update]
+  before_action :fetch_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = Task.all
   end
 
   def show
+    @comments = Comment.all
   end
 
   def new
@@ -23,6 +24,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @statuses = Status.all
   end
 
   def update
@@ -30,6 +32,15 @@ class TasksController < ApplicationController
       redirect_to task_path
     else
       render 'edit'
+    end
+  end
+
+  def destroy
+    @user = @task.author
+    if @task.destroy
+      redirect_to user_path(@user), success: "Task has been deleted."
+    else
+      redirect_to user_path(@user), alert: "Task has not been deleted."
     end
   end
 
@@ -43,5 +54,4 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:name, :desc, :author_id, :owner_id, :status)
   end
-
 end

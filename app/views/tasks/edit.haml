@@ -16,7 +16,5 @@
       .form-group= f.text_field :owner_id, class: 'form-control', placeholder: 'Owner of task'
     .form-inputs{ @task.errors.messages[:status] ? {class: "has-error"} : {} }
       .form-group= f.association :status
-
-
     .form-actions
       = f.submit 'Update Task', class: 'btn btn-default btn-block'
