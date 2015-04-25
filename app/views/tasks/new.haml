@@ -1,14 +1,16 @@
-= form_for @task do |f|
-  - if @task.errors.any?
-    #error_explanation
-      %h4.text-center.text-muted= "#{pluralize(category.errors.count, "error")} prohibited this category from being saved:"
-      %ul
-        - @task.errors.full_messages.each do |msg|
-          %li= msg
+.col-md-6.col-md-offset-3
+  %h3.text-center Create Task
+  = form_for @task do |f|
+    - if @task.errors.any?
+      #error_explanation
+        %h4.text-center.text-muted= "#{pluralize(category.errors.count, "error")} prohibited this category from being saved:"
+        %ul
+          - @task.errors.full_messages.each do |msg|
+            %li= msg
 
-  .form-inputs
-    = f.text_field :name, class: 'form-control', placeholder: 'Name of task.'
-    = f.text_area :desc, class: 'form-control', placeholder: 'Description of your task.'
+    .form-inputs
+      .form-group= f.text_field :name, class: 'form-control', placeholder: 'Name of task.'
+      .form-group= f.text_area :desc, class: 'form-control', placeholder: 'Description of your task.'
 
-  .form-actions
-    = f.submit 'Save Task', class: 'btn btn-block'
+    .form-actions
+      = f.submit 'Save Task', class: 'btn btn-default btn-block'
