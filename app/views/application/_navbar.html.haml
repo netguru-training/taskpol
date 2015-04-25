@@ -4,10 +4,10 @@
       = link_to "TaskPOL", root_url, class: 'navbar-brand'
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to "Użytkownicy", users_path
+        %li= link_to "Users", users_path
         - if user_signed_in?
-          %li= link_to "Twój profil", user_path(current_user)
-          %li= link_to "Wyloguj się", destroy_user_session_path, method: :delete
+          %li= link_to "Your profile", user_path(current_user)
+          %li= link_to "Log out", destroy_user_session_path, method: :delete
         - else
-          %li= link_to "Logowanie", new_user_session_path
-          %li= link_to "Rejestracja", new_user_registration_path
+          %li= link_to "Log in", new_user_session_path
+          %li= link_to "Register", new_user_registration_path
