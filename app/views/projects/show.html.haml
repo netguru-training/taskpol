@@ -1,0 +1,15 @@
+.col-md-6.col-md-offset-2
+  .row
+    %table.table.table-stripped
+      %thead
+        %tr
+          %th #Id
+          %th Title
+          %th Description
+          %th Author
+      %tbody
+        %tr
+          %tr= @project.id
+          %tr= @project.title
+          %tr= @project.desc
+          %tr= @project.user

@@ -1,0 +1,6 @@
+.col-md-8.col-md-offset-2
+  .row
+    = simple_form_for @project do |f|
+      = f.input :title, label: 'Name'
+      = f.input :desc, label: 'Description', hint: 'Description for your project'
+      = f.button :submit
