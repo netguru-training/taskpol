@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
 
+  before_action :fetch_projects, only: [:show, :edit, :update]
+
   def index
     @projects = Project.all
   end
@@ -19,19 +21,15 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id]).decorate
     ids = ProjectUser.where(project_id: @project.id).map {|pu| pu.user_id }
     ids.push @project.author.id
     @users = User.where.not(id: ids).decorate
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
-
     if @project.update(project_params)
       redirect_to project_path(@project), success: "Project has been updated."
     else
@@ -40,6 +38,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+  def fetch_projects
+    @project = Project.find(params[:id]).decorate
+  end
+
   def project_params
     params.require(:project).permit(:title, :desc)
   end

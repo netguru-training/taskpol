@@ -1,11 +1,12 @@
 class TasksController < ApplicationController
 
+  before_action :fetch_task, only: [:show, :edit, :update]
+
   def index
     @tasks = Task.all
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
@@ -22,12 +23,9 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
-
     if @task.update(task_params)
       redirect_to task_path
     else
@@ -37,6 +35,10 @@ class TasksController < ApplicationController
 
 
   private
+
+  def fetch_task
+    @task = Task.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(:name, :desc, :author_id, :owner_id, :status)
