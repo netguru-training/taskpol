@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :authored_projects, class_name: 'Project', inverse_of: :author, foreign_key: "author_id"
 
+  has_many :authored_commments, class_name: 'Comment', inverse_of: :author, foreign_key: "author_id"
 
   has_many :projects, through: :project_users
   has_many :project_users
