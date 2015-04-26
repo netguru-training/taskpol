@@ -34,7 +34,13 @@ class ProjectsController < ApplicationController
       flash[:error] = 'You are not allowed to edit this project.'
       redirect_to project_path(params[:id])
     else
-      render :edit
+      if @project.update(project_params)
+        flash[:notice] = "Project has been updated."
+        redirect_to project_path(@project)
+      else
+        flash[:alert] = "Project has not been updated."
+        redirect_to project_path(@project)
+      end
     end
   end
 
