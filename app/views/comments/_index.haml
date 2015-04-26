@@ -1,5 +1,5 @@
-%p list of comments
-
 - @comments.each do |c|
-  %p.list-group-item-text= c.desc
-  %p.list-group-item-text= c.author_id
+  .panel.panel-default
+    %h5.list-group-item-text= c.desc
+    %p.list-group-item-text.text-muted= c.author_id
+    %p.list-group-item-text.text-muted= "Added at: #{c.created_at.strftime("%e.%m.%Y")}"
