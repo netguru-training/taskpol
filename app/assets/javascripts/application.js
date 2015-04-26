@@ -32,7 +32,6 @@ var onReady = function() {
           payload[status] = ids;
           return {status_id: status, task_ids: task_ids }
         });
-        debugger
         $.post("update_tasks", JSON.stringify(payload), "json");
     }
   }).disableSelection();
