@@ -11,7 +11,8 @@
 
 .col-md-12
   .row
-    - @grouped_tasks.each do |status, tasks|
+    - @statuses.each do |status|
+      - tasks = @grouped_tasks[status]
       .col-md-3.js-status{data: { id: status.id} }
         %h3= status.name
         .list-group.connectedSortable
