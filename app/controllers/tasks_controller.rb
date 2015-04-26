@@ -8,6 +8,7 @@ class TasksController < ApplicationController
 
   def show
     @comments = Comment.all
+    @comment = Comment.new
   end
 
   def new
