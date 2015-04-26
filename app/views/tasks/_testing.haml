@@ -5,8 +5,8 @@
       - if task.status.name == "Testing"
         = link_to project_task_path(task.project, task), class:"list-group-item" do
           %h4.list-group-item-heading= task.name
-          %p.list-group-item-text= task.desc
+          %p.list-group-item-text= task.descriotion
           %p.list-group-item-text= task.author.email
           - if task.owner
             %p.list-group-item-text= task.owner.email
-          %p.list-group-item-text.text-muted= "Number of comments: xx"
+          %p.list-group-item-text.text-muted= "Number of comments: #{task.comments.size}"

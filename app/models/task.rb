@@ -1,5 +1,8 @@
 class Task < ActiveRecord::Base
   include PublicActivity::Model
+
+  before_save :markdown_to_html
+
   tracked owner: ->(controller, model) { controller && controller.current_user }
 
   scope :authored_by, ->(user) { where(author: user) }
@@ -20,4 +23,10 @@ class Task < ActiveRecord::Base
 
   has_many :comments, dependant: :destroy
 
+  private
+  def markdown_to_html
+    renderer = Redcarpet::Render::HTML.new
+    markdown = Redcarpet::Markdown.new(renderer)
+    self.html_desc = markdown.render(markdown_desc)
+  end
 end
