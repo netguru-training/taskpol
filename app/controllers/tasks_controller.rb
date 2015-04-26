@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   def index
     @project = Project.find(params[:project_id])
     @grouped_tasks = @project.tasks.decorate.group_by(&:status)
+    @statuses = Status.order(:id).all
   end
 
   def show
@@ -53,7 +54,15 @@ class TasksController < ApplicationController
   end
 
   def update_tasks
-    render text: "OK"
+    payload = JSON.parse(request.body.read)
+    payload.each do |status_id, task_ids|
+      task_ids.each do |task_id|
+        task = Task.find(task_id)
+        task.status_id = status_id
+        task.save
+      end
+    end
+    render text: 'OK'
   end
 
 
