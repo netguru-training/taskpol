@@ -1,6 +1,6 @@
 .col-md-12.panel.panel-info
   %h3.text-center Create Comment
-  = simple_form_for @comment do |f|
+  = simple_form_for [@project, @task, @comment] do |f|
     - if @comment.errors.any?
       #error_explanation.well.well-sm
         %p.text-center.text-muted= "#{pluralize(@comment.errors.count, "error")} prohibited this task from being saved:"
@@ -13,4 +13,5 @@
 
     .form-actions
       = f.submit 'Save Comment', class: 'btn btn-default btn-block'
-  %br/
+      = f.button :button, "I'm feeling lucky" , class: 'btn btn-default btn-block js-suggest-button'
+    %br/

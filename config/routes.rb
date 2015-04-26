@@ -9,8 +9,5 @@ Rails.application.routes.draw do
       resources :comments
     end
     resource :project_users, only: [:destroy, :create]
-    # member do
-    #   delete :delete_user
-    # end
   end
 end
