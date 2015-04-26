@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-  before_action :fetch_projects, only: [:show, :edit, :update]
+  before_action :find_project, only: [:show, :edit, :update]
 
   def index
     @projects = (current_user.projects.decorate | current_user.authored_projects.decorate)
@@ -44,13 +44,13 @@ class ProjectsController < ApplicationController
         redirect_to project_path(@project)
       else
         flash[:alert] = "Project has not been updated."
-        redirect_to project_path(@project)
+        render :edit
       end
     end
   end
 
   private
-  def fetch_projects
+  def find_project
     @project = Project.find(params[:id]).decorate
   end
 
