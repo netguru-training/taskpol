@@ -3,4 +3,8 @@ class TaskDecorator < Draper::Decorator
   decorates_association :users
   decorates_association :author
   decorates_association :owner
+
+  def description
+    object.html_desc.html_safe
+  end
 end

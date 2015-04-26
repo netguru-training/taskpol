@@ -3,6 +3,13 @@ class ProjectUsersController < ApplicationController
     if current_user == Project.find(params[:project_id]).author
       p = ProjectUser.where(project_id: params[:project_id], user_id: params[:user_id])
       if p.destroy_all
+
+        tasks = Task.where(project_id: params[:project_id], owner_id: params[:user_id])
+        tasks.each do |task|
+          task.owner_id = nil
+          task.save
+        end
+
         flash[:notice] = "Successfully deleted user from project."
         redirect_to project_path(id: params[:project_id])
       else

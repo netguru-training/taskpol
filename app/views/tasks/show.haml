@@ -2,7 +2,7 @@
   .col-md-6
     .list-group
       %h3.list-group-item-heading= @task.name
-      %p.list-group-item-text= @task.desc
+      %p.list-group-item-text= @task.description
       %p.list-group-item-text= "Task author: #{@task.author.name}"
       - if @task.owner
         %p.list-group-item-text= "Task owner: #{@task.owner.name}"
@@ -10,7 +10,7 @@
       %p.list-group-item-text= "Updated at: #{@task.updated_at.strftime("%e.%m.%Y")}"
       %p.list-group-item-text= "Status of task: #{@task.status.name}"
 
-      .btn.btn-default= link_to "Edit Task", edit_project_task_path(@project, @task)
+      = link_to "Edit Task", edit_project_task_path(@project, @task), class: 'btn btn-default'
 
       %hr/
       = render 'comments/new'

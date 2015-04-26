@@ -6,7 +6,8 @@
         %p.text-center.text-danger= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
     .form-inputs
       = f.input :name, placeholder: 'Name of task.'
-      = f.input :desc, placeholder: 'Description of your task.'
+      = link_to 'Markdown supported', 'https://guides.github.com/features/mastering-markdown/', class: 'small'
+      = f.input :markdown_desc, placeholder: 'Use Markdown to post your description', :input_html => { 'rows' => 10 }
       = f.association :owner, collection: @users
       = f.association :status
     .form-actions

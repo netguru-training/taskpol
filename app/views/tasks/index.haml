@@ -1,4 +1,4 @@
-.col-md-10.col-md-offset-2
+.col-md-12
   .row
     .col-md-2
       .btn-group
@@ -7,9 +7,9 @@
     .col-md-8.text-center
       %h2
         = @project.title
+      %hr
 
-
-.col-md-10.col-md-offset-2
+.col-md-12
   .row
     - @grouped_tasks.each do |status, tasks|
       .col-md-3
