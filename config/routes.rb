@@ -9,8 +9,10 @@ Rails.application.routes.draw do
     #   delete :delete_user
     # end
   end
-  resources :tasks
-  resources :comments
+
+  resources :tasks do
+    resources :comments
+  end
 
   root to: "projects#index"
 end
