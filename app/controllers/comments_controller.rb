@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.all.decorate
+    @task = @comment.task
   end
 
   def new
@@ -11,7 +12,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = current_user.authored_commments.new(comment_params)
+    @comment = task.comments.new(comment_params)
+    @comment.author = current_user
     if @comment.save
       redirect_to :back, notice: "Comment created #{@comment.desc}."
     else
@@ -23,10 +25,13 @@ class CommentsController < ApplicationController
 
   def fetch_comment
     @comment = Comment.find(params[:id]).decorate
-    @comments = Comment.all.decorate
+  end
+
+  def task
+    Task.find(params[:task_id])
   end
 
   def comment_params
-    params.require(:comment).permit( :desc, :author_id, :task_id )
+    params.require(:comment).permit( :desc )
   end
 end
