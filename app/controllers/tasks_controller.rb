@@ -52,6 +52,10 @@ class TasksController < ApplicationController
     end
   end
 
+  def update_tasks
+    render text: "OK"
+  end
+
 
   private
 
