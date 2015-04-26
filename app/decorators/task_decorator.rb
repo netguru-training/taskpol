@@ -3,4 +3,5 @@ class TaskDecorator < Draper::Decorator
   decorates_association :users
   decorates_association :author
   decorates_association :owner
+  decorates_association :comments
 end

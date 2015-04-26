@@ -5,10 +5,10 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all
     @project = Project.find(params[:project_id])
+    @comments = Comment.all.decorate
   end
 
   def show
-    @comments = Comment.all.decorate
     @project = @task.project
     @comment = Comment.new
   end
