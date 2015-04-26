@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = current_user.comment.new
+    @comment = Comment.new
   end
 
   def create

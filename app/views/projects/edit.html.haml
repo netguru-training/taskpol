@@ -3,4 +3,4 @@
     = simple_form_for @project, method: :put do |f|
       = f.input :title, label: 'Name'
       = f.input :desc, label: 'Description', hint: 'Description for your project'
-      = f.button :submit
+      = f.button :submit, class: 'btn btn-success'

@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_action :fetch_projects, only: [:show, :edit, :update]
 
   def index
-    @projects = Project.all.decorate
+    @projects = (current_user.projects.decorate | current_user.authored_projects.decorate)
     @activities = PublicActivity::Activity.all.order(created_at: :desc)
   end
 
@@ -15,9 +15,11 @@ class ProjectsController < ApplicationController
     @project = Project.new(title: params[:project][:title], desc: params[:project][:desc], author_id: current_user.id)
 
     if @project.save
-      redirect_to project_path(@project), notice: "Project has been created successfully."
+      flash[:notice] = "Project has been created successfully."
+      redirect_to project_path(@project)
     else
-      redirect_to root_path, alert: "Project has not been created."
+      flash[:alert] = "Project has not been created."
+      redirect_to root_path
     end
   end
 
@@ -25,6 +27,7 @@ class ProjectsController < ApplicationController
     ids = ProjectUser.where(project_id: @project.id).map {|pu| pu.user_id }
     ids.push @project.author.id
     @users = User.where.not(id: ids).decorate
+    @tasks = Task.where(project_id: @project.id)
   end
 
   def edit
@@ -32,7 +35,7 @@ class ProjectsController < ApplicationController
 
   def update
     if Project.find(params[:id]).author != current_user
-      flash[:error] = 'You are not allowed to edit this project.'
+      flash[:error] = "You are not allowed to edit this project."
       redirect_to project_path(params[:id])
     else
       if @project.update(project_params)
