@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
 
-  validates :desc, presence: true
+  validates_presence_of :desc
+  validates_presence_of :author
 
   belongs_to :author, class_name: 'User'
   belongs_to :task
