@@ -21,7 +21,7 @@ class Task < ActiveRecord::Base
 
   belongs_to :status
 
-  has_many :comments, dependant: :destroy
+  has_many :comments, dependent: :destroy
 
   private
   def markdown_to_html
