@@ -1,0 +1,12 @@
+.col-md-3
+  %h3 In Progress
+  .list-group
+    - @tasks.each do |task|
+      - if task.status.name == "In progress"
+        = link_to project_task_path(task.project, task), class:"list-group-item" do
+          %h4.list-group-item-heading= task.name
+          %p.list-group-item-text= task.desc
+          %p.list-group-item-text= task.author.email
+          - if task.owner
+            %p.list-group-item-text= task.owner.email
+          %p.list-group-item-text.text-muted= "Number of comments: xx"
