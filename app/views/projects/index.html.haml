@@ -11,6 +11,10 @@
               %td= link_to project.title, project_path(project)
               %td= link_to "Tasks", project_tasks_path(project)
               %td= project.author.name
+              %td
+                = link_to "Delete", project_path(project), method: :delete, data: { confirm: "Are you sure?"}
+                = link_to "Edit", edit_project_path(project)
+
 
 .col-md-4
   .row

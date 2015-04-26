@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-  before_action :find_project, only: [:show, :edit, :update]
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = (current_user.projects.decorate | current_user.authored_projects.decorate)
@@ -47,6 +47,10 @@ class ProjectsController < ApplicationController
         render :edit
       end
     end
+  end
+
+  def destroy
+    redirect_to root_path, notice: "Project has been deleted." if @project.destroy  
   end
 
   private
