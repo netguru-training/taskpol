@@ -11,55 +11,10 @@
 
 .col-md-10.col-md-offset-2
   .row
-    .col-md-3
-      %h3 To Do
-      .list-group
-        - @tasks.each do |task|
-          - if task.status.name == "ToDo"
-            = link_to project_task_path(task.project, task), class:"list-group-item" do
-              %h4.list-group-item-heading= task.name
-              %p.list-group-item-text= task.desc
-              %p.list-group-item-text= task.author.email
-              - if task.owner
-                %p.list-group-item-text= task.owner.email
-              %p.list-group-item-text.text-muted= "Number of comments: xx"
-
-
-    .col-md-3
-      %h3 In Progress
-      .list-group
-        - @tasks.each do |task|
-          - if task.status.name == "In progress"
-            = link_to project_task_path(task.project, task), class:"list-group-item" do
-              %h4.list-group-item-heading= task.name
-              %p.list-group-item-text= task.desc
-              %p.list-group-item-text= task.author.email
-              - if task.owner
-                %p.list-group-item-text= task.owner.email
-              %p.list-group-item-text.text-muted= "Number of comments: xx"
-
-    .col-md-3
-      %h3 Testing
-      .list-group
-        - @tasks.each do |task|
-          - if task.status.name == "Testing"
-            = link_to project_task_path(task.project, task), class:"list-group-item" do
-              %h4.list-group-item-heading= task.name
-              %p.list-group-item-text= task.desc
-              %p.list-group-item-text= task.author.email
-              - if task.owner
-                %p.list-group-item-text= task.owner.email
-              %p.list-group-item-text.text-muted= "Number of comments: xx"
-
-    .col-md-3
-      %h3 Done
-      .list-group
-        - @tasks.each do |task|
-          - if task.status.name == "Done"
-            = link_to project_task_path(task.project, task), class:"list-group-item" do
-              %h4.list-group-item-heading= task.name
-              %p.list-group-item-text= task.desc
-              %p.list-group-item-text= task.author.email
-              - if task.owner
-                %p.list-group-item-text= task.owner.email
-              %p.list-group-item-text.text-muted= "Number of comments: xx"
+    - @grouped_tasks.each do |status, tasks|
+      .col-md-3
+        %h3= status.name
+        .list-group.connectedSortable
+          - tasks.each do |task|
+            = link_to project_task_path(task.project, task), class:"list-group-item", data: { id: task.id } do
+              = render "shared/tasks", :task => task
