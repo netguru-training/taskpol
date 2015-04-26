@@ -9,4 +9,4 @@
           %p.list-group-item-text= task.author.email
           - if task.owner
             %p.list-group-item-text= task.owner.email
-          %p.list-group-item-text.text-muted= "Number of comments: xx"
+          %p.list-group-item-text.text-muted= "Number of comments: #{task.comments.size}"
