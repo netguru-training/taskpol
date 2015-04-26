@@ -4,7 +4,7 @@ class TasksController < ApplicationController
 
   def index
     @project = Project.find(params[:project_id])
-    @grouped_tasks = @project.tasks.group_by(&:status)
+    @grouped_tasks = @project.tasks.decorate.group_by(&:status)
   end
 
   def show
