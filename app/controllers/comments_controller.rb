@@ -3,8 +3,8 @@ class CommentsController < ApplicationController
   before_action :fetch_comment, only: [:index, :show, :edit, :update, :destroy]
 
   def index
-    @comments = Comment.all.decorate
-    @task = @comment.task
+    #@comments = Comment.all.decorate
+    @comment = @task.comment
   end
 
   def new

@@ -3,12 +3,11 @@ class TasksController < ApplicationController
   before_action :fetch_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tasks = Task.all
     @project = Project.find(params[:project_id])
+    @grouped_tasks = @project.tasks.group_by(&:status)
   end
 
   def show
-    @comments = Comment.all.decorate
     @project = @task.project
     @comment = Comment.new
   end
