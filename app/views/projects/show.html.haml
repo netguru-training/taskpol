@@ -12,14 +12,29 @@
       Users in project
     %table.table.table-striped
       %tr
+        %th
+          User name
+        %th
+          Tasks created
+        %th
+          Tasks owned
+      %tr
         %td
           = @project.author_name
+        %td
+          = @tasks.authored_by(@project.author).count
+        %td
+          = @tasks.owned_by(@project.author).count
         %td
 
       - @project.users.each do |u|
         %tr
           %td
             = u.name
+          %td
+            = @tasks.authored_by(u).count
+          %td
+            = @tasks.owned_by(u).count
           %td
             - if current_user == @project.author
               .pull-right
