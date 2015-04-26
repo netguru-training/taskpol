@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = (current_user.projects.decorate | current_user.authored_projects.decorate)
+    @activities = PublicActivity::Activity.all.order(created_at: :desc)
   end
 
   def new

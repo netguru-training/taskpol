@@ -1,17 +1,19 @@
-- unless @users.empty?
-  %table.table.table-striped
-    %thead
-      %tr
-        %th #
-        %th Name
-        %th Email
-        %th Tasks created
-        %th Tasks owned
-    %tbody
-      - @users.each do |user|
-        %tr
-          %td= user.id
-          %td= link_to user.name, user_path(user)
-          %td= user.email
-          %td= user.amount_author_tasks
-          %td= user.amount_owner_tasks
+.col-md-8.col-md-offset-2
+  .row
+    - unless @users.empty?
+      %table.table.table-striped
+        %thead
+          %tr
+            %th #
+            %th Name
+            %th Email
+            %th Tasks created
+            %th Tasks owned
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td= user.id
+              %td= link_to user.name, user_path(user)
+              %td= user.email
+              %td= user.amount_author_tasks
+              %td= user.amount_owner_tasks
