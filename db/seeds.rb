@@ -1,6 +1,7 @@
 User.destroy_all
 Status.destroy_all
 Task.destroy_all
+Project.destroy_all
 
 u1 = User.create(email: "user1@user.pl", password: "useruser1", firstname: "Jan", lastname: "Kowalski")
 u2 = User.create(email: "user2@user.pl", password: "useruser2", firstname: "Ala", lastname: "Nowak")
