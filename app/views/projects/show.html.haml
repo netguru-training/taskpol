@@ -20,6 +20,7 @@
     %br
     - if current_user == @project.author
       %p= link_to "Edit project", edit_project_path(@project), class: "btn btn-warning"
+      %p= link_to "Delete project", project_path(@project), method: :delete, data: { confirm: "Are you completely sure???" }, class: "btn btn-danger"
     %br
     %h4 Users in project
 

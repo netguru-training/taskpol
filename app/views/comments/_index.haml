@@ -2,4 +2,5 @@
   .panel.panel-default
     %h5.list-group-item-text= c.desc
     %p.list-group-item-text.text-muted= c.author.name
+    %p.list-group-item-text.text-muted= c.task_id
     %p.list-group-item-text.text-muted= "Added at: #{c.created_at.strftime("%e.%m.%Y")}"

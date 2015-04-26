@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-  before_action :find_project, only: [:show, :edit, :update]
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
 
   def index
     @projects = (current_user.projects.decorate | current_user.authored_projects.decorate)
@@ -45,6 +45,21 @@ class ProjectsController < ApplicationController
       else
         flash[:alert] = "Project has not been updated."
         render :edit
+      end
+    end
+  end
+
+  def destroy
+    if Project.find(params[:id]).author != current_user
+      flash[:error] = "You are not allowed to delete this project."
+      redirect_to root_path
+    else
+      if @project.destroy
+        flash[:notice] = "Project has been deleted."
+        redirect_to root_path
+      else
+        flash[:alert] = "Project has not been deleted."
+        redirect_to root_path
       end
     end
   end
