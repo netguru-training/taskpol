@@ -4,9 +4,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
-    @task = Task.new
     @project = Project.find(params[:project_id])
-    @task.project = @project
   end
 
   def show
@@ -16,14 +14,17 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
-    #@task = current_user.authored_tasks.new
+    @project = Project.find(params[:project_id])
+    @task = Task.new(project_id: params[:project_id])
   end
 
   def create
+    @project = Project.find(params[:project_id])
     @task = current_user.authored_tasks.new(task_params)
+    @task.project = @project
+    @task.status = Status.find_by_name("ToDo")
     if @task.save
-      redirect_to tasks_path, notice: "Task created #{@task.name}."
+      redirect_to project_tasks_path(@project), notice: "Task created #{@task.name}."
     else
       render :new, error: "Something gone wrong. Please try again."
     end

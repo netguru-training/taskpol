@@ -4,10 +4,10 @@ class Task < ActiveRecord::Base
 
   scope :authored_by, ->(user) { where(author: user) }
   scope :owned_by, ->(user) { where(owner: user) }
+  scope :with_status, ->(status) { where(status: status) }
 
   validates_presence_of :name
   validates_presence_of :author
-  validates_presence_of :owner
   validates_presence_of :project
   validates_presence_of :status
 

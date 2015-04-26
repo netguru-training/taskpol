@@ -28,6 +28,7 @@ class ProjectsController < ApplicationController
     ids.push @project.author.id
     @users = User.where.not(id: ids).decorate
     @tasks = Task.where(project_id: @project.id)
+    @statuses = Status.all
   end
 
   def edit
