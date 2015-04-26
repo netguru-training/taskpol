@@ -10,7 +10,13 @@
       %p.list-group-item-text= "Updated at: #{@task.updated_at.strftime("%e.%m.%Y")}"
       %p.list-group-item-text= "Status of task: #{@task.status.name}"
       .list-group
-      .btn.btn-default= link_to "Edit Task", edit_task_path(@task)
+        - @comments.each do |c|
+          %p.list-group-item-text= c.desc
+          %p.list-group-item-text= c.author_id
+
+      .btn.btn-default= link_to "Edit Task", edit_project_task_path(@project, @task)
+      .btn.btn-default= link_to "Add Comment", new_comment_path(@comment)
+      .btn.btn-default= link_to "Edit Task", edit_project_task_path(@task.project, @task)
       %hr/
       = render 'comments/new'
       = render 'comments/index'

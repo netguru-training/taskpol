@@ -5,11 +5,12 @@
     - unless @projects.empty?
       %table.table.table-striped
         %tbody
-          - @projects.each do |p|
+          - @projects.each do |project|
             %tr
-              %td= p.id
-              %td= link_to p.title, project_path(p)
-              %td= p.author.name
+              %td= project.id
+              %td= link_to project.title, project_path(project)
+              %td= link_to "Tasks", project_tasks_path(project)
+              %td= project.author.name
 
 .col-md-4
   .row

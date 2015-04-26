@@ -14,10 +14,14 @@ s4 = Status.create(name: 'Done')
 users = [u1, u2, u3]
 statuses = [s1, s2, s3, s4]
 
+project = Project.create(title: "Zastosowanie łańuchów Markowa ...", desc: "No tak opis...", author_id: u1.id)
+
 1.upto 10 do |i|
   user1 = users.sample
   user2 = users.sample
   status = statuses.sample
-  Task.create(name: "task #{i}", desc: "task #{i} description", status: status,
+  task = Task.create(name: "task #{i}", desc: "task #{i} description", status: status,
               author: user1, owner: user2)
+
+  project.tasks << task
 end
