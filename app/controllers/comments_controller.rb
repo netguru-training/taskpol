@@ -14,10 +14,12 @@ class CommentsController < ApplicationController
   def create
     @comment = task.comments.new(comment_params)
     @comment.author = current_user
+    @project = task.project
+    @task = task.decorate
     if @comment.save
       redirect_to :back, notice: "Comment created #{@comment.desc}."
     else
-      render :new, error: "Something gone wrong. Please try again."
+      render 'tasks/show', error: "Something gone wrong. Please try again."
     end
   end
 
