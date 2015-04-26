@@ -10,7 +10,7 @@
       %hr
 
 .col-md-12
-  .row
+  .row.js-tasks{ data: { url: update_tasks_project_tasks_path(@project) } }
     - @statuses.each do |status|
       - tasks = @grouped_tasks[status]
       .col-md-3.js-status{data: { id: status.id} }

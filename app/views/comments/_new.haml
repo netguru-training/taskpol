@@ -1,17 +1,18 @@
-.col-md-12.panel.panel-info
-  %h3.text-center Create Comment
-  = simple_form_for [@project, @task, @comment] do |f|
-    - if @comment.errors.any?
-      #error_explanation.well.well-sm
-        %p.text-center.text-muted= "#{pluralize(@comment.errors.count, "error")} prohibited this task from being saved:"
-        %ul
-          - @comment.errors.full_messages.each do |msg|
-            %li.text-danger= msg
+.panel.panel-info
+  .panel-heading
+    %h3.text-center Create Comment
+    .panel-body
+      = simple_form_for [@project, @task, @comment] do |f|
+        - if @comment.errors.any?
+          #error_explanation.well.well-sm
+            %p.text-center.text-muted= "#{pluralize(@comment.errors.count, "error")} prohibited this task from being saved:"
+            %ul
+              - @comment.errors.full_messages.each do |msg|
+                %li.text-danger= msg
 
-    .form-inputs{ @comment.errors.messages[:desc] ? {class: "has-error"} : {} }
-      .form-group= f.text_area :desc, class: 'form-control', placeholder: 'Write your comment.'
+        .form-inputs{ @comment.errors.messages[:desc] ? {class: "has-error"} : {} }
+          .form-group= f.text_area :desc, class: 'form-control', placeholder: 'Write your comment.'
 
-    .form-actions
-      = f.submit 'Save Comment', class: 'btn btn-default btn-block'
-      %button.btn.btn-default.btn-block.js-suggest-button{ disabled: true } I'm feeling lucky
-    %br/
+        .form-actions
+          = f.submit 'Save Comment', class: 'btn btn-default btn-block'
+          %button.btn.btn-default.btn-block.js-suggest-button{ disabled: true } I'm feeling lucky

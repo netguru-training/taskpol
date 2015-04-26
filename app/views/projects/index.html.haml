@@ -1,23 +1,24 @@
-.col-md-6.col-md-offset-1
-  .row
-    %h2 Projects
-    = link_to "New project", new_project_path, class: "btn btn-success"
+.row
+  .col-md-9
+    %h2
+      Projects
+      = link_to "New project", new_project_path, class: "btn btn-success pull-right"
+    %hr
     - unless @projects.empty?
       %table.table.table-striped
         %tbody
           - @projects.each do |project|
             %tr
-              %td= project.id
               %td= link_to project.title, project_path(project)
-              %td= link_to "Tasks", project_tasks_path(project)
               %td= project.author.name
               %td
-                = link_to "Delete", project_path(project), method: :delete, data: { confirm: "Are you sure?"}
-                = link_to "Edit", edit_project_path(project)
+                .btn-group.btn-group-xs
+                  = link_to "Tasks", project_tasks_path(project), class: 'btn btn-info'
+                  = link_to "Delete", project_path(project), method: :delete, data: { confirm: "Are you sure?"}, class: 'btn btn-danger'
+                  = link_to "Edit", edit_project_path(project), class: 'btn btn-warning'
 
 
-.col-md-4
-  .row
+  .col-md-3
     %h2 News feed
-    %br
+    %hr
     = render 'shared/activities'

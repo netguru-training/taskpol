@@ -32,7 +32,8 @@ var onReady = function() {
           payload[status] = ids;
           return {status_id: status, task_ids: task_ids }
         });
-        $.post("update_tasks", JSON.stringify(payload), "json");
+        var url = $('.js-tasks').data('url');
+        $.post(url, JSON.stringify(payload), "json");
     }
   }).disableSelection();
 };
