@@ -5,7 +5,11 @@ class Task < ActiveRecord::Base
   scope :authored_by, ->(user) { where(author: user) }
   scope :owned_by, ->(user) { where(owner: user) }
 
-  validates :name, presence: true
+  validates_presence_of :name
+  validates_presence_of :author
+  validates_presence_of :owner
+  validates_presence_of :project
+  validates_presence_of :status
 
   belongs_to :author, class_name: 'User', counter_cache: true
   belongs_to :owner, class_name: 'User', counter_cache: true
