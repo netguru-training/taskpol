@@ -1,11 +1,12 @@
-.col-md-2
+.col-md-10.col-md-offset-1
   .row
-    .btn-group
-      =link_to 'Add task', new_project_task_path(@project, @task), class: 'btn btn-success btn-sm'
-      =link_to 'Back', project_path(@project), class: 'btn btn-warning btn-sm'
-    %hr
-
-.col-md-10
+    .col-md-2
+      .btn-group
+        =link_to 'Add task', new_project_task_path(@project, @task), class: 'btn btn-success btn-sm'
+        =link_to 'Back', project_path(@project), class: 'btn btn-warning btn-sm'
+    .col-md-8.text-center
+      %h2
+        = @project.title
   .row
     .col-md-3
       %h3 To Do
