@@ -9,7 +9,9 @@
     %h3
       = "Author: " + @project.author_name
     %br
-
+    - if current_user == @project.author
+      %p= link_to "Edit project", edit_project_path(@project), class: "btn btn-warning"
+    %br
     %h4 Users in project
 
     %table.table.table-striped
@@ -20,6 +22,7 @@
           Tasks created
         %th
           Tasks owned
+        %th
       %tr
         %td
           = @project.author_name
@@ -29,16 +32,14 @@
           = @tasks.owned_by(@project.author).count
         %td
 
-      - @project.users.each do |u|
-        %tr
-          %td
-            = @project.author_name
-          %td
-
         - @project.users.each do |u|
           %tr
             %td
               = u.name
+            %td
+              = @tasks.authored_by(u).count
+            %td
+              = @tasks.owned_by(u).count
             %td
               - if current_user == @project.author
                 .pull-right
@@ -57,10 +58,6 @@
             - if task.owner
               %p.list-group-item-text= task.owner.email
             %p.list-group-item-text.text-muted= "Number of comments: xx"
-
-
-    - if current_user == @project.author
-      %p= link_to "Edit project", edit_project_path(@project), class: "btn btn-warning"
 
 .col-md-2.col-md-offset-1
   - if current_user == @project.author
