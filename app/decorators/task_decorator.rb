@@ -5,6 +5,6 @@ class TaskDecorator < Draper::Decorator
   decorates_association :owner
 
   def description
-    object.html_desc.html_safe
+    (object.html_desc.presence || "").html_safe
   end
 end
