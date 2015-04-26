@@ -1,30 +1,60 @@
-.row
-  .col-md-8.col-md-offset-2
+.col-md-2
+  .row
     .btn-group
-      =link_to 'Add task', new_task_path, class: 'btn btn-success btn-sm'
+      =link_to 'Add task', new_project_task_path(@task.project, @task), class: 'btn btn-success btn-sm'
     %hr
-.row
-  .col-md-3
-    %h3 To Do
-    .list-group
-      - @tasks.each do |t|
-        = link_to task_path(t.id), class:"list-group-item" do
-          %h4.list-group-item-heading= t.name
-          %p.list-group-item-text= t.desc
-          %p.list-group-item-text= t.author.email
-          - if t.owner
-            %p.list-group-item-text= t.owner.email
-          %p.list-group-item-text.text-muted= "Number of comments: xx"
+
+.col-md-10
+  .row
+    .col-md-3
+      %h3 To Do
+      .list-group
+        - @tasks.each do |task|
+          - if task.status.name == "ToDo"
+            = link_to project_task_path(task.project, task), class:"list-group-item" do
+              %h4.list-group-item-heading= task.name
+              %p.list-group-item-text= task.desc
+              %p.list-group-item-text= task.author.email
+              - if task.owner
+                %p.list-group-item-text= task.owner.email
+              %p.list-group-item-text.text-muted= "Number of comments: xx"
 
 
-  .col-md-3
-    %h3 In Progress
-    .list-group
+    .col-md-3
+      %h3 In Progress
+      .list-group
+        - @tasks.each do |task|
+          - if task.status.name == "In progress"
+            = link_to project_task_path(task.project, task), class:"list-group-item" do
+              %h4.list-group-item-heading= task.name
+              %p.list-group-item-text= task.desc
+              %p.list-group-item-text= task.author.email
+              - if task.owner
+                %p.list-group-item-text= task.owner.email
+              %p.list-group-item-text.text-muted= "Number of comments: xx"
 
-  .col-md-3
-    %h3 Testing
-    .list-group
+    .col-md-3
+      %h3 Testing
+      .list-group
+        - @tasks.each do |task|
+          - if task.status.name == "Testing"
+            = link_to project_task_path(task.project, task), class:"list-group-item" do
+              %h4.list-group-item-heading= task.name
+              %p.list-group-item-text= task.desc
+              %p.list-group-item-text= task.author.email
+              - if task.owner
+                %p.list-group-item-text= task.owner.email
+              %p.list-group-item-text.text-muted= "Number of comments: xx"
 
-  .col-md-3
-    %h3 Done
-    .list-group
+    .col-md-3
+      %h3 Done
+      .list-group
+        - @tasks.each do |task|
+          - if task.status.name == "Done"
+            = link_to project_task_path(task.project, task), class:"list-group-item" do
+              %h4.list-group-item-heading= task.name
+              %p.list-group-item-text= task.desc
+              %p.list-group-item-text= task.author.email
+              - if task.owner
+                %p.list-group-item-text= task.owner.email
+              %p.list-group-item-text.text-muted= "Number of comments: xx"

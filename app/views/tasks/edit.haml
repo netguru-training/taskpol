@@ -1,6 +1,6 @@
 .col-md-6.col-md-offset-3
   %h3.text-center Update Task
-  = simple_form_for @task do |f|
+  = simple_form_for [@project, @task] do |f|
     - if @task.errors.any?
       #error_explanation.well.well-sm
         %p.text-center.text-danger= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
