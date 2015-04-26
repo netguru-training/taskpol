@@ -7,7 +7,7 @@
     .form-inputs
       = f.input :name, placeholder: 'Name of task.'
       = f.input :desc, placeholder: 'Description of your task.'
-      = f.association :owner
+      = f.association :owner, collection: @users
       = f.association :status
     .form-actions
       = f.submit 'Update Task', class: 'btn btn-default btn-block'

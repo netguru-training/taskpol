@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @users = User.all.decorate
     @statuses = Status.all
   end
 
@@ -48,7 +49,7 @@ class TasksController < ApplicationController
   private
 
   def fetch_task
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:id]).decorate
   end
 
   def task_params
