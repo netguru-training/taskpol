@@ -1,69 +1,70 @@
-.col-md-2
-  %h4
-    Project tasks count
-  - @statuses.each do |s|
-    %h5
-      = s.name + ": " + @tasks.with_status(s).count.to_s
-  = link_to "Go to tasks", project_tasks_path(@project), class: "btn btn-info btn-sm"
-
-
-.col-md-6.col-md-offset-1
-  .row
-    %h1
-      = @project.title
-    %h3
-      = "Description: " + @project.desc
-    %h3
-      = "Created: " + @project.created_at.strftime("%d/%m/%Y")
-    %h3
-      = "Author: " + @project.author_name
-    %br
-    - if current_user == @project.author
-      %p= link_to "Edit project", edit_project_path(@project), class: "btn btn-warning"
-      %p= link_to "Delete project", project_path(@project), method: :delete, data: { confirm: "Are you completely sure???" }, class: "btn btn-danger"
-    %br
-    %h4 Users in project
-
-    %table.table.table-striped
-      %tr
-        %th
-          User name
-        %th
-          Tasks created
-        %th
-          Tasks owned
-        %th
-      %tr
-        %td
+.row
+  .col-md-10.col-md-offset-1
+    .row
+      .col-md-9
+        %h2
+          = @project.title
+          - if current_user == @project.author
+            .btn-group.btn-group-sm.pull-right
+              = link_to "Edit project", edit_project_path(@project), class: "btn btn-warning"
+              = link_to "Delete project", project_path(@project), method: :delete, data: { confirm: "Are you completely sure???" }, class: "btn btn-danger"
+        %p
+          %span.text-muted Description:
+          = @project.desc
+        %p
+          %span.text-muted Created:
+          = @project.created_at.strftime("%d/%m/%Y")
+        %p
+          %span.text-muted Author:
           = @project.author_name
-        %td
-          = @tasks.authored_by(@project.author).count
-        %td
-          = @tasks.owned_by(@project.author).count
-        %td
+        %h4 Users in project
 
-        - @project.users.each do |u|
+        %table.table.table-striped
+          %tr
+            %th
+              User name
+            %th
+              Tasks created
+            %th
+              Tasks owned
+            %th
           %tr
             %td
-              = u.name
+              = @project.author_name
             %td
-              = @tasks.authored_by(u).count
+              = @tasks.authored_by(@project.author).count
             %td
-              = @tasks.owned_by(u).count
+              = @tasks.owned_by(@project.author).count
             %td
-              - if current_user == @project.author
-                .pull-right
-                  = link_to "Delete user from project", project_project_users_path(@project, user_id: u), method: :delete, class: "btn btn-danger btn-xs"
 
-.col-md-2.col-md-offset-1
-  - if current_user == @project.author
-    %h4
-      Add users to project
-    %br
-      %table.table.table-condensed
-        - @users.each do |u|
-          %tr
-            %td
-              = u.name
-            %td
-              = link_to "Add", project_project_users_path(@project, user_id: u), method: :post, class: "btn btn-success btn-xs"
+            - @project.users.each do |u|
+              %tr
+                %td
+                  = u.name
+                %td
+                  = @tasks.authored_by(u).count
+                %td
+                  = @tasks.owned_by(u).count
+                %td
+                  - if current_user == @project.author
+                    .pull-right
+                      = link_to "Delete user from project", project_project_users_path(@project, user_id: u), method: :delete, class: "btn btn-danger btn-xs"
+
+      .col-md-3
+        - if current_user == @project.author
+          %h4
+            Add users to project
+          %br
+            %table.table.table-condensed
+              - @users.each do |u|
+                %tr
+                  %td
+                    = u.name
+                  %td
+                    = link_to "Add", project_project_users_path(@project, user_id: u), method: :post, class: "btn btn-success btn-xs"
+        %h4
+          Project tasks count
+          - @statuses.each do |s|
+            %h5
+              = s.name + ": " + @tasks.with_status(s).count.to_s
+          = link_to "Go to tasks", project_tasks_path(@project), class: "btn btn-info btn-sm"

@@ -1,5 +1,8 @@
-- @task.comments.each do |c|
-  .panel.panel-default
-    %h5.list-group-item-text= c.desc
-    %p.list-group-item-text.text-muted= c.author.name
-    %p.list-group-item-text.text-muted= "Added at: #{c.created_at.strftime("%e.%m.%Y")}"
+%ul.list-group
+  - @task.comments.each do |c|
+    .list-group-item
+      = c.desc
+      %p
+        %small.text-muted
+          = c.author.name
+          = c.created_at.strftime("%e.%m.%Y")

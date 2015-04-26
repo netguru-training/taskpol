@@ -1,6 +1,7 @@
-.col-md-8.col-md-offset-2
-  .row
+.row
+  .col-md-6.col-md-offset-3
+    %h2 Edit this project
     = simple_form_for @project, method: :put do |f|
       = f.input :title, label: 'Name'
-      = f.input :desc, label: 'Description', hint: 'Description for your project'
+      = f.input :desc, label: 'Description', placeholder: 'Description for your project', :input_html => { 'rows' => 10 }
       = f.button :submit, class: 'btn btn-success'
