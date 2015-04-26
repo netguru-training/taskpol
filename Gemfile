@@ -39,3 +39,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'html2haml'
 
 gem 'pry-rails'
+
+gem 'redcarpet'
