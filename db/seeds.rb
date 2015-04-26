@@ -21,8 +21,13 @@ project = Project.create(title: "Zastosowanie łańuchów Markowa ...", desc: "N
   user1 = users.sample
   user2 = users.sample
   status = statuses.sample
-  task = Task.create(name: "task #{i}", desc: "task #{i} description", status: status,
-              author: user1, owner: user2)
+  task = Task.create(
+    name: "task #{i}",
+    markdown_desc: "# task #{i} description",
+    status: status,
+    author: user1,
+    owner: user2,
+  )
 
   project.tasks << task
 end
