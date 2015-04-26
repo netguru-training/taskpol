@@ -12,7 +12,7 @@ $( document ).ready(function() {
       $("#comment_desc").text(data);
     });
     return true;
-  });
+  }).prop('disabled', false);
 
   $(".connectedSortable").sortable({
     connectWith: ".connectedSortable",
