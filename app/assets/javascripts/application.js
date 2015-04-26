@@ -5,7 +5,7 @@
 //= require_tree .
 //= require jquery-ui
 
-$( document ).ready(function() {
+var onReady = function() {
   $(".js-suggest-button").on("click", function(event) {
     event.preventDefault();
     $.get("http://api.githunt.io/programmingexcuses").then(function(data){
@@ -20,4 +20,7 @@ $( document ).ready(function() {
         var columns = $(".js-status");
     }
   }).disableSelection();
-});
+};
+
+$( document ).ready(onReady);
+$( document ).on('page:load', onReady);
