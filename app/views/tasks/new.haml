@@ -3,15 +3,8 @@
   = simple_form_for @task do |f|
     - if @task.errors.any?
       #error_explanation.well.well-sm
-        %p.text-center.text-muted= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
-        %ul
-          - @task.errors.full_messages.each do |msg|
-            %li.text-danger= msg
-
-    .form-inputs{ @task.errors.messages[:name] ? {class: "has-error"} : {} }
-      .form-group= f.text_field :name, class: 'form-control', placeholder: 'Name of task.'
-    .form-inputs{ @task.errors.messages[:desc] ? {class: "has-error"} : {} }
-      .form-group= f.text_area :desc, class: 'form-control', placeholder: 'Description of your task.'
-
+        %p.text-center.text-danger= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+    = f.input :name, placeholder: 'Name of task.'
+    = f.input :desc, placeholder: 'Description of your task.'
     .form-actions
       = f.submit 'Save Task', class: 'btn btn-default btn-block'
