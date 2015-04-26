@@ -1,32 +1,48 @@
 .col-md-6.col-md-offset-3
-  %h1
-    = @project.title
-    %h3
-      = "Description: " + @project.desc
-    %h3
-      = "Created: " + @project.created_at.strftime("%d/%m/%Y")
-    %h3
-      = "Author: " + @project.author_name
-    %br
-    %h4
-      Users in project
-    %table.table.table-striped
-      %tr
-        %td
-          = @project.author_name
-        %td
-
-      - @project.users.each do |u|
+  .row
+    %h1
+      = @project.title
+      %h3
+        = "Description: " + @project.desc
+      %h3
+        = "Created: " + @project.created_at.strftime("%d/%m/%Y")
+      %h3
+        = "Author: " + @project.author_name
+      %br
+      %h4
+        Users in project
+      %table.table.table-striped
         %tr
           %td
-            = u.name
+            = @project.author_name
           %td
-            - if current_user == @project.author
-              .pull-right
-                = link_to "Delete user from project", project_project_users_path(@project, user_id: u), method: :delete, class: "btn btn-danger btn-xs"
-    %br
-    - if current_user == @project.author
-      %p= link_to "Edit project", edit_project_path(@project), class: "btn btn-warning"
+
+        - @project.users.each do |u|
+          %tr
+            %td
+              = u.name
+            %td
+              - if current_user == @project.author
+                .pull-right
+                  = link_to "Delete user from project", project_project_users_path(@project, user_id: u), method: :delete, class: "btn btn-danger btn-xs"
+      %br
+      - if current_user == @project.author
+        %p= link_to "Edit project", edit_project_path(@project), class: "btn btn-warning"
+
+  .row
+    %h1 Tasks
+    - unless @project.tasks.nil?
+      .list-group
+        - @project.tasks.each do |task|
+          = link_to project_task_path(task.project, task), class:"list-group-item" do
+            %h4.list-group-item-heading= task.name
+            %p.list-group-item-text= task.desc
+            %p.list-group-item-text= task.author.email
+            - if task.owner
+              %p.list-group-item-text= task.owner.email
+            %p.list-group-item-text.text-muted= "Number of comments: xx"
+
+
 
 .col-md-2.col-md-offset-1
   - if current_user == @project.author
@@ -40,4 +56,3 @@
               = u.name
             %td
               = link_to "Add", project_project_users_path(@project, user_id: u), method: :post, class: "btn btn-success btn-xs"
-

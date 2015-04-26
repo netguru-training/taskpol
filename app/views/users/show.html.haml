@@ -61,16 +61,16 @@
             = t.id
         %td
           %h5
-            = link_to t.name, task_path(t)
+            = link_to t.name, project_task_path(t.project, t)
         %td
           %h5
-            = t.status
+            = t.status.name
         %td
           %h5
             = t.created_at.strftime("%d/%m/%Y")
         %td
-          = link_to "Delete", task_path(t), method: :delete, data: { confirm: "Are you sure?" }
-          = link_to "Edit", edit_task_path(t)
+          = link_to "Delete", project_task_path(t.project, t), method: :delete, data: { confirm: "Are you sure?" }
+          = link_to "Edit", edit_project_task_path(t.project, t)
   %br
   %h3
     Owned tasks
@@ -90,7 +90,7 @@
             = t.name
         %td
           %h5
-            = t.status
+            = t.status.name
         %td
           %h5
             = t.created_at.strftime("%d/%m/%Y")

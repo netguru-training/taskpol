@@ -4,14 +4,19 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+    @task = Task.new
+    @project = Project.find(params[:project_id])
+    @task.project = @project
   end
 
   def show
     @comments = Comment.all
+    @project = @task.project
   end
 
   def new
-    @task = current_user.authored_tasks.new
+    @task = Task.new
+    #@task = current_user.authored_tasks.new
   end
 
   def create
@@ -25,11 +30,12 @@ class TasksController < ApplicationController
 
   def edit
     @statuses = Status.all
+    @project = @task.project
   end
 
   def update
     if @task.update(task_params)
-      redirect_to task_path
+      redirect_to project_task_path(@task.project, @task)
     else
       render 'edit'
     end
