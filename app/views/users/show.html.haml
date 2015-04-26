@@ -33,7 +33,7 @@
       %th #
       %th Title
       %th Created at
-    - unless @user.projects.nil?
+    - unless @user.projects.empty?
       - @user.projects.each do |p|
         %tr
           %td
@@ -55,7 +55,7 @@
       %th Project
       %th Created at
       %th Options
-    - @authored_tasks.each do |t|
+    - @user.authored_tasks.each do |t|
       %tr
         %td
           %h4
@@ -85,7 +85,7 @@
       %th Status
       %th Project
       %th Created at
-    - @owned_tasks.each do |t|
+    - @user.owned_tasks.each do |t|
       %tr
         %td
           %h4
