@@ -17,7 +17,7 @@ $( document ).ready(function() {
   $(".connectedSortable").sortable({
     connectWith: ".connectedSortable",
     update: function(event, ui ) {
-      
+        var columns = $(".js-status");
     }
   }).disableSelection();
 });
