@@ -11,8 +11,8 @@ class Task < ActiveRecord::Base
   validates_presence_of :project
   validates_presence_of :status
 
-  belongs_to :author, class_name: 'User', counter_cache: true
-  belongs_to :owner, class_name: 'User', counter_cache: true
+  belongs_to :author, class_name: 'User'
+  belongs_to :owner, class_name: 'User'
 
   belongs_to :project
 
