@@ -3,18 +3,11 @@
   = simple_form_for @task do |f|
     - if @task.errors.any?
       #error_explanation.well.well-sm
-        %p.text-center.text-muted= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
-        %ul
-          - @task.errors.full_messages.each do |msg|
-            %li.text-danger= msg
-
-    .form-inputs{ @task.errors.messages[:name] ? {class: "has-error"} : {} }
-      .form-group= f.text_field :name, class: 'form-control', placeholder: 'Name of task.'
-    .form-inputs{ @task.errors.messages[:desc] ? {class: "has-error"} : {} }
-      .form-group= f.text_area :desc, class: 'form-control', placeholder: 'Description of your task.'
-    .form-inputs{ @task.errors.messages[:owner_id] ? {class: "has-error"} : {} }
-      .form-group= f.text_field :owner_id, class: 'form-control', placeholder: 'Owner of task'
-    .form-inputs{ @task.errors.messages[:status] ? {class: "has-error"} : {} }
-      .form-group= f.association :status
+        %p.text-center.text-danger= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
+    .form-inputs
+      = f.input :name, placeholder: 'Name of task.'
+      = f.input :desc, placeholder: 'Description of your task.'
+      = f.association :owner
+      = f.association :status
     .form-actions
       = f.submit 'Update Task', class: 'btn btn-default btn-block'

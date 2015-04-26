@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   resources :tasks
   resources :comments
 
-  root to: "application#index"
+  root to: "projects#index"
 end

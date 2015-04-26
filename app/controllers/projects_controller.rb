@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
   before_action :fetch_projects, only: [:show, :edit, :update]
 
   def index
-    @projects = Project.all.decorate
+    @projects = (current_user.projects.decorate | current_user.authored_projects.decorate)
+    @activities = PublicActivity::Activity.all.order(created_at: :desc)
   end
 
   def new
