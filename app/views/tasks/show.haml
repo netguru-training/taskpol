@@ -11,6 +11,6 @@
       %p.list-group-item-text= "Status of task: #{@task.status.name}"
       .list-group
       .btn.btn-default= link_to "Edit Task", edit_task_path(@task)
+      %hr/
       = render 'comments/new'
-
       = render 'comments/index'
