@@ -17,6 +17,6 @@
       .btn.btn-default= link_to "Edit Task", edit_project_task_path(@project, @task)
       .btn.btn-default= link_to "Add Comment", new_comment_path(@comment)
       .btn.btn-default= link_to "Edit Task", edit_task_path(@task)
+      %hr/
       = render 'comments/new'
-
       = render 'comments/index'

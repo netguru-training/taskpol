@@ -9,9 +9,9 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = current_user.comment.new(comment_params)
+    @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to comment_path, notice: "Comment created #{@comment.desc}."
+      redirect_to tasks_path, notice: "Comment created #{@comment.desc}."
     else
       render :new, error: "Something gone wrong. Please try again."
     end
