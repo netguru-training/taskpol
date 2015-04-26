@@ -16,6 +16,7 @@ users = [u1, u2, u3]
 statuses = [s1, s2, s3, s4]
 
 project = Project.create(title: "Zastosowanie łańuchów Markowa ...", desc: "No tak opis...", author_id: u1.id)
+project2 = Project.create(title: "WTF?! ...", desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt quo, excepturi, consequatur architecto cumque ut dolorum aut voluptatem sit deserunt!", author_id: u1.id)
 
 1.upto 10 do |i|
   user1 = users.sample
@@ -23,7 +24,7 @@ project = Project.create(title: "Zastosowanie łańuchów Markowa ...", desc: "N
   status = statuses.sample
   task = Task.create(
     name: "task #{i}",
-    markdown_desc: "# task #{i} description",
+    markdown_desc: "``` alert('task #{i}');``` ````console.log(nie dziala);```",
     status: status,
     author: user1,
     owner: user2,
