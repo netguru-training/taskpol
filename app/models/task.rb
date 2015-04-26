@@ -18,6 +18,6 @@ class Task < ActiveRecord::Base
 
   belongs_to :status
 
-  has_many :comments
+  has_many :comments, dependant: :destroy
 
 end
