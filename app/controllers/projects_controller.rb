@@ -50,7 +50,18 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    redirect_to root_path, notice: "Project has been deleted." if @project.destroy  
+    if Project.find(params[:id]).author != current_user
+      flash[:error] = "You are not allowed to delete this project."
+      redirect_to root_path
+    else
+      if @project.destroy
+        flash[:notice] = "Project has been deleted."
+        redirect_to root_path
+      else
+        flash[:alert] = "Project has not been deleted."
+        redirect_to root_path
+      end
+    end
   end
 
   private
