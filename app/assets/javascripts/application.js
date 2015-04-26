@@ -19,17 +19,21 @@ var onReady = function() {
     update: function(event, ui ) {
         var statuses = $(".js-status");
         var tasks = $(".js-task");
+        var payload = {};
 
-        var index_status = $.map(statuses, function(item, idx) {
-          //debugger
+        var index_status = statuses.map(function(idx, item) {
           var status = $(item).data("id");
+          var ids = [];
           var task_ids = $(item).find(".js-task").map(function(idx, item) {
-            return $(item).data("id");
+            var id = $(item).data("id");
+            ids.push(id);
+            return id;
           });
+          payload[status] = ids;
           return {status_id: status, task_ids: task_ids }
         });
-
-        $.post("update_tasks", JSON.stringify(index_status), "json");
+        debugger
+        $.post("update_tasks", JSON.stringify(payload), "json");
     }
   }).disableSelection();
 };
