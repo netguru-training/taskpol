@@ -1,0 +1,27 @@
+@mixin status($parent-color) {
+  background-color: lighten($parent-color, 30%);
+}
+
+.status-in-progress > a {
+  @include status($brand-warning);
+
+  &:hover {
+    background-color: lighten($brand-warning, 35%);
+  }
+}
+
+.status-testing > a {
+  @include status($brand-info);
+
+  &:hover {
+    background-color: lighten($brand-info, 35%);
+  }
+}
+
+.status-done > a {
+  @include status($brand-success);
+
+  &:hover {
+    background-color: lighten($brand-success, 35%);
+  }
+}

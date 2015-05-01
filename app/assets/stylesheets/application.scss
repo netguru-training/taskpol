@@ -1,10 +1,6 @@
-/*
- *= require_tree .
- *= require_self
- *=require jquery-ui
- */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "tasks";
 
 .connectedSortable {
   min-height: 100px;

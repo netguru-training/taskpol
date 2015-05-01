@@ -15,7 +15,7 @@
       - tasks = @grouped_tasks[status]
       .col-md-3.js-status{data: { id: status.id} }
         %h3= status.name
-        .list-group.connectedSortable
+        %div{ :class => "list-group connectedSortable status-#{status.name.parameterize}"  }
           - unless tasks.nil?
             - tasks.each do |task|
               = link_to project_task_path(task.project, task), class:"list-group-item js-task", data: { id: task.id } do
